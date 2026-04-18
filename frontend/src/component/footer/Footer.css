@@ -1,127 +1,172 @@
 .footer-container{
     display: flex;
     flex-direction: column;
-    background-color: rgb(43, 84, 159);
-    height: 32vh;
+    background: linear-gradient(135deg, #5B21B6, #7C3AED);
+    min-height: 32vh;
     width: 100%;
     justify-content: center;
     align-items: center;
-    /* padding-left: 3vw;
-    padding-right: 3vw;
-    padding-top: 3vh;
-    padding-bottom: 3vh; */
+    padding: 30px 20px;
 }
+
+/* Logo */
 .logo{
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 800;
-    margin: 0;
-    padding: 0;
-    color:white;
+    color: white;
+    letter-spacing: 1px;
 }
+
+/* Top section */
 .about-footer{
     display: flex;
     flex-direction: row;
-    margin-bottom: 5vh;
+    margin-top: 20px;
+    margin-bottom: 30px;
     width: 85%;
     justify-content: space-between;
+    gap: 20px;
 }
+
+/* Bottom */
 .footer-bottom-container{
     display: flex;
     width: 85%;
-    /* height: 6vh; */
-    /* background-color: rgb(29, 64, 130); */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
+/* Social / icon */
 .crypto-logo{
-    margin-right: 1vw;
-    font-size: 35px;
+    font-size: 32px;
     color: white;
+    transition: 0.3s;
 }
+
+.crypto-logo:hover{
+    transform: scale(1.2);
+    color: #E9D5FF;
+}
+
+/* About */
 .about-content-container{
     width: 40%;
 }
+
 .about-us-title{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    color: white;
-    margin-bottom: 1vh;
+    color: #ffffff;
+    margin-bottom: 8px;
 }
+
 .about-content{
     font-size: 13px;
     font-weight: 300;
-    color: rgb(187, 196, 196);
+    color: #ddd6fe;
+    line-height: 1.6;
 }
-.copyright{
-    color: rgb(255, 255, 255);
-}
+
+/* Links */
 .footer-link{
     display: flex;
+    gap: 20px;
 }
+
 .footer-link-item{
-    color: white;
-    margin-left: 3vw;
-    margin-left: 3vw;
+    color: #ffffff;
+    font-size: 14px;
+    transition: 0.25s;
+    position: relative;
 }
+
+/* underline animation */
+.footer-link-item::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: #E9D5FF;
+    transition: 0.3s;
+}
+
 .footer-link-item:hover{
-    color: rgb(90, 147, 222);
+    color: #E9D5FF;
 }
+
+.footer-link-item:hover::after{
+    width: 100%;
+}
+
+/* Contact */
 .Contact-contribute-container{
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
+
 .Contact-contribute-container a{
-font-size: 15px;
-font-weight: 400;
+    font-size: 14px;
+    color: #ddd6fe;
+    transition: 0.2s;
 }
+
+.Contact-contribute-container a:hover{
+    color: #ffffff;
+}
+
+/* Copyright */
+.copyright{
+    color: #e0e7ff;
+    font-size: 13px;
+}
+
+/* MOBILE */
 @media (max-width:700px) {
-    .footer-container{
-        height: 41vh;
-    }
-    .about-footer{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .about-content-container{
-        text-align: center;
-    }
-    .footer-bottom-container{
-        width: 100%;
-        flex-direction:column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: -3vh;
-    }
-    .copyright{
-        font-size: 14px;
-        font-weight: 400;
-        margin-top: 2vh;
-    }
-    .crypto-logo{
-       width: 100%;
-       margin-right: 0;
-       margin-bottom: 2vh;
-       text-align: center;
-    }
-    .about-content-container{
-        width: 100%;
-    }
-    .footer-link{
-        /* flex-direction: column; */
-        width: 100%;
-        justify-content: space-around;
-        text-align: center;
-    }
-    .footer-link-item{
-        margin-bottom: 1vh;
-    }
-    .Contact-contribute-container{
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 100%;
-        margin-top: 2vh;
-    }
-     
+
+.footer-container{
+    min-height: auto;
+    padding: 25px 15px;
+}
+
+.about-footer{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content-container{
+    width: 100%;
+}
+
+.footer-bottom-container{
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.crypto-logo{
+    margin-bottom: 10px;
+}
+
+.footer-link{
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.Contact-contribute-container{
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.copyright{
+    font-size: 12px;
+}
 }
