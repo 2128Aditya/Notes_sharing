@@ -1,41 +1,110 @@
 .message {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    word-wrap    : break-word;
-overflow-wrap: break-word;
-  }
-  
-  .messageTop{
-      display: flex;
-  }
-  
-  .messageImg {
-    width: 32px;
-    height: 32px;
+    margin-top: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    animation: fadeIn 0.25s ease;
+}
+
+/* Top section */
+.messageTop{
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+/* Avatar */
+.messageImg {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .messageText{
-      padding: 10px;
-      border-radius: 20px;
-      background-color: #1877f2;
-      color: white;
-      max-width: 300px;
-  }
-  
-  .messageBottom{
-      font-size: 12px;
-      margin-top: 10px;
-  }
-  
-  .message.own{
-      align-items: flex-end;
-  }
-  
-  .message.own .messageText{
-      background-color: rgb(245, 241, 241);
-      color: black;
-  }
+    border: 2px solid #7C3AED;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Message bubble */
+.messageText{
+    padding: 10px 14px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    color: white;
+    max-width: 280px;
+    font-size: 13px;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Bubble tail */
+.messageText::before{
+    content: "";
+    position: absolute;
+    left: -6px;
+    bottom: 6px;
+    width: 12px;
+    height: 12px;
+    background: #7C3AED;
+    transform: rotate(45deg);
+}
+
+/* Time */
+.messageBottom{
+    font-size: 11px;
+    margin-top: 4px;
+    color: #6B7280;
+}
+
+/* OWN MESSAGE (right side) */
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageTop{
+    flex-direction: row-reverse;
+}
+
+/* Own bubble */
+.message.own .messageText{
+    background: #ffffff;
+    color: #111827;
+}
+
+/* Own tail */
+.message.own .messageText::before{
+    left: auto;
+    right: -6px;
+    background: #ffffff;
+}
+
+/* Hover subtle */
+.messageText:hover{
+    transform: scale(1.02);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE */
+@media (max-width:600px){
+
+.messageText{
+    max-width: 220px;
+    font-size: 12px;
+}
+
+.messageImg{
+    width: 30px;
+    height: 30px;
+}
+}
