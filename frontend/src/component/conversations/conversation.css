@@ -1,38 +1,75 @@
 .conversation {
     display: flex;
     align-items: center;
-    padding: 10px;
+    gap: 12px;
+    padding: 10px 14px;
     cursor: pointer;
-    margin-top: 20px;
-  }
-.conversation:visited{
-  background-color: rgb(245, 243, 243);
+    margin-top: 10px;
+    border-radius: 12px;
+    transition: all 0.25s ease;
 }
-  .conversation:hover {
-    background-color: rgb(245, 243, 243);
-  }
-  
-  .conversationImg {
-    width: 40px;
-    height: 40px;
+
+/* Hover + active feel */
+.conversation:hover {
+    background: rgba(124, 58, 237, 0.08);
+    transform: translateX(4px);
+}
+
+/* Optional active state (agar future me class add kare) */
+.conversation.active {
+    background: rgba(124, 58, 237, 0.15);
+}
+
+/* Avatar */
+.conversationImg {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
-  }
-  
-  .conversationName {
+    border: 2px solid #7C3AED;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Name */
+.conversationName {
     font-weight: 500;
-  }
-  
-  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Optional: last message preview (future ready) */
+.conversationName::after {
+    content: " • Tap to chat";
+    font-size: 11px;
+    color: #9CA3AF;
+    font-weight: 400;
+}
+
+/* Divider line (clean separation) */
+.conversation:not(:last-child) {
+    border-bottom: 1px solid #F3F4F6;
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
     .conversation{
-      margin-right: 4px;
-      flex-direction: column;
+        margin-right: 4px;
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px;
     }
+
     .conversationName {
-      text-align: center;
+        text-align: center;
+        font-size: 12px;
     }
+
     .conversationImg{
-      margin-right: 0;
+        margin-right: 0;
+        width: 40px;
+        height: 40px;
     }
-  }
+}

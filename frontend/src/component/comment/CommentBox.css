@@ -4,39 +4,98 @@
     box-sizing: border-box;
 }
 
+/* Container */
 .comment-box-container{
     display: flex;
-    flex-direction: row;
-    margin-top: 2vh;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 14px;
+    animation: fadeIn 0.3s ease;
 }
 
+/* Avatar */
 .comment-box-img{
-    width: 6vh;
-    height: 6vh;
-    box-sizing: border-box;
-    border: 1px solid rgb(50, 104, 101);
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #7C3AED;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.comment-box-message{
-    
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: rgb(248, 250, 251);
-    padding: 7px 10px;
-    font-size: 12px;
-
-}
+/* Message wrapper */
 .comment-box-message-name{
     display: flex;
     flex-direction: column;
-    margin-left: 1vh;
+    width: 100%;
 }
+
+/* Username */
 .comment-box-message-name-value{
-     margin: 0;
-     font-size: 14px;
-     font-weight: 600;
-     color: darkblue;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5B21B6;
+    margin-bottom: 4px;
+}
+
+/* Message bubble */
+.comment-box-message{
+    width: fit-content;
+    max-width: 75%;
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #111827;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+/* Bubble tail */
+.comment-box-message::before{
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    transform: rotate(45deg);
+    box-shadow: -2px 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Hover */
+.comment-box-container:hover .comment-box-message{
+    background: #F3F4F6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE */
+@media (max-width:600px){
+
+.comment-box-img{
+    width: 36px;
+    height: 36px;
+}
+
+.comment-box-message{
+    max-width: 85%;
+    font-size: 12px;
+}
+
+.comment-box-message-name-value{
+    font-size: 12px;
+}
 }
