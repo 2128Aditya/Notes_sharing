@@ -1,118 +1,129 @@
-import React, { Component, createContext } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import {Spinner} from 'react-bootstrap';
-import "./Banner.css";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Profile from "../../pages/profile/Profile";
-const Banner = () => {
-  const pf="https://notesharingbackend-ankitkr437.onrender.com/images/";
-  const [users, setusers] = useState([]);
-  const [notes, setnotes] = useState([]);
-  const [len, setlen] = useState(0);
-  const [isuser,setisuser]=useState(false)
-  const [isnotes,setisnotes]=useState(false);
-  const TotalPublishNotes=createContext();
-  useEffect(() => {
-    const fetchalluser = async () => {
-      const res = await axios.get("https://notesharingbackend-ankitkr437.onrender.com/api/users/");
-      setusers(res.data);
-      setisuser(true);
-    };
-    const fetchallnotes = async () => {
-      const res = await axios.get("https://notesharingbackend-ankitkr437.onrender.com/api/notes/");
-      setnotes(res.data);
-      setisnotes(true);
-    };
-    fetchallnotes();
-    fetchalluser();
-  }, []);
+/* Carousel container */
+.carousel-container {
+    margin-top: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
 
-  const topauthor = [];
-  const showauthor = [];
-  users.map((x, i) => {
-    topauthor[i] = notes.filter(function (obj) {
-      return obj.userId == x._id;
-    });
-  });
+/* Slide container */
+.banner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 280px;
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    position: relative;
+}
 
-  {
-    topauthor.sort((a, b) => {
-      return b.length - a.length;
-    });
-  }
-  topauthor.map((x, i) => {
-    if (x.length > 0) {
-      showauthor[i] = x;
-    }
-  });
-  {
-    showauthor.sort((a, b) => {
-      return b.length - a.length;
-    });
-  }
-   
-  return (
-    <>
-     {
-       (isnotes && isuser)?
+/* Glass card */
+.banner-first {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    transition: all 0.4s ease;
+}
 
-       <Carousel
-        showIndicators={false}
-        showStatus={false}
-        showThumbs={false}
-        autoFocus={true}
-        autoPlay={true}
-        infiniteLoop={true}
-        transitionTime={2500}
-        interval={5300}
-        className="carousel-container"
-      >
-        {showauthor.map((x, i) => {
-          if (x.length > 0) {
-            return (
-              <div key={i} className="banner-container">
-                <div className="banner-first">
-                 <div  className="banner-image-container" >
-                 <Link to={`/profile/${x[0].userId}`} style={{textDecoration:"none"}}>
+.banner-first:hover {
+    transform: scale(1.03);
+}
 
-                     
-              <img
-                src={
-                  users.find((obj)=>obj._id==x[0].userId).profilePicture?users.find((obj)=>obj._id==x[0].userId).profilePicture:pf+"DefaultBoy.jpg"
-                }
-                className="banner-image"
-              />
-              </Link>
-                 </div>
-                  <div className="banner-text">
-                    <Link
-                      to={`/profile/${x[0].userId}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <p className="banner-name">
-                        {i + 1}.
-                        {users.find((obj) => obj._id == x[0].userId).username}
-                      </p>
-                    </Link>
-                    <p className="banner-sell">
-                      Total published notes :<span>{x.length}</span>
-                    </p>
-                  </div>
-                </div>
-               
-              </div>
-            );
-          }
-        })}
-      </Carousel>
-      :<Spinner animation="grow"  style={{width:"10vw",height:"10vw",marginTop:"8vh",color:"yellowgreen",marginLeft:"40vw"}}/>
-     }
-    </>
-  );
-};
+/* Image wrapper */
+.banner-image-container {
+    position: relative;
+}
 
-export default Banner;
- 
+/* Profile image */
+.banner-image {
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Text area */
+.banner-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Name */
+.banner-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+/* Subtitle */
+.banner-sell {
+    font-size: 15px;
+    color: #e0e7ff;
+}
+
+.banner-sell span {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Carousel arrows */
+.carousel .control-arrow {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.carousel:hover .control-arrow {
+    opacity: 1;
+}
+
+/* Dots */
+.carousel .control-dots .dot {
+    background: #c4b5fd;
+    box-shadow: none;
+}
+
+.carousel .control-dots .dot.selected {
+    background: #ffffff;
+}
+
+/* Loader alignment fix */
+.spinner-border,
+.spinner-grow {
+    display: block;
+    margin: 60px auto;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+.banner-container {
+    height: 220px;
+}
+
+.banner-first {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.banner-image {
+    height: 70px;
+    width: 70px;
+}
+
+.banner-name {
+    font-size: 18px;
+}
+
+.banner-sell {
+    font-size: 13px;
+}
+}
